@@ -131,6 +131,4 @@ public class ArchivosController(ArchivosClientService archivos, IConfiguration c
         ModelState.AddModelError("Portada", "No ha sido posible realizar la acción. Inténtalo nuevamente");
         return  View(itemToEdit);
     }
-
-
 }

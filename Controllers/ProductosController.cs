@@ -53,7 +53,7 @@ public class ProductosController(ProductosClientService productos,
 
     public async Task<IActionResult> Crear()
     {
-        await ProductoDropDownListAsync();
+        await ProductosDropDownListAsync();
         return View();
     }
 
@@ -74,7 +74,7 @@ public class ProductosController(ProductosClientService productos,
                     return RedirectToAction("Salir", "Auth");
             }
         }
-        await ProductoDropListAsync();
+        await ProductosDropDownListAsync();
         ModelState.AddModelError("Nomrbe", "No ha sido posible realizar la acción. Inténtelo nuevamente.");
         return View(itemToCreate);
     }
@@ -98,9 +98,9 @@ public class ProductosController(ProductosClientService productos,
     }  
 
     [HttpPost]
-    public async Task<IActionResult> EditarAsync(int id, Prooducto itemToEdit) 
+    public async Task<IActionResult> EditarAsync(int id, Producto itemToEdit) 
     {
-        if (id != itemToEdit.Producto.id) return NotFound();
+        if (id != itemToEdit.ProductoId) return NotFound();
 
         ViewBag.Url = configuration["UrlWebAPI"];
         if (ModelState.IsValid)
@@ -195,7 +195,7 @@ public class ProductosController(ProductosClientService productos,
             Producto? producto = await productos.GetAsync(id);
             if (producto == null) return NotFound();
 
-            await CategoriaDropDownListAsync();
+            await CategoriasDropDownListAsync();
             itemToView = new ProductoCategoria { Producto = producto};
         }
         catch (HttpRequestException ex)
@@ -286,7 +286,7 @@ public class ProductosController(ProductosClientService productos,
         ViewBag.Categoria = new SelectList(listado, "CategoriaId", "Nombre", itemSeleccionado);
     }
 
-    private async Task ProductoDropDownListAsync(object? itemSeleccionado = null)
+    private async Task ProductosDropDownListAsync(object? itemSeleccionado = null)
     {
         var listado = await archivos.GetAsync();
         ViewBag.Archivo = new SelectList(listado, "ArchivoId", "Nombre", itemSeleccionado);
