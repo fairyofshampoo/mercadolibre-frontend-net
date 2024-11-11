@@ -4,7 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <RootNamespace>mercadolibre_frontend_net</RootNamespace>
+    <RootNamespace>frontendnet</RootNamespace>
   </PropertyGroup>
 
 </Project>
