@@ -1,13 +1,13 @@
 using System.Security.Claims;
-using frontend.Models;
-using frontend.Services;
+using frontendnet.Models;
+using frontendnet.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace frontendnet;
 
 [Authorize]
-public class PerfilController(PerfilClientService perfil) : PerfilController
+public class PerfilController(PerfilClientService perfil) : Controller
 {
     public async Task<IActionResult> IndexAsync()
     {
