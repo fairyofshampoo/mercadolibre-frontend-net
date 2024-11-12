@@ -16,6 +16,9 @@ public class Bitacora
     [Display(Name = "IP")]
     public string? IP { get; set; }
 
+    [Display(Name = "Usuario")]
+    public string? Usuario { get; set; }
+
     [Display(Name = "Fecha")]
     public DateTime? Fecha { get; set; }
 }
