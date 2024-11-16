@@ -16,7 +16,7 @@ public class ProductosClientService(HttpClient client)
 
     public async Task PostAsync(Producto producto)
     {
-        var response = await client.PostAsJsonAsync("api/productos", producto);
+        var response = await client.PostAsJsonAsync($"api/productos", producto);
         response.EnsureSuccessStatusCode();
     }
 
@@ -34,13 +34,13 @@ public class ProductosClientService(HttpClient client)
 
     public async Task PostAsync(int id, int categoriaid)
     {
-        var response = await client.PostAsJsonAsync($"api/productos/{id}/categorias/{categoriaid}", new { categoriaid });
+        var response = await client.PostAsJsonAsync($"api/productos/{id}/categoria", new { categoriaid });
         response.EnsureSuccessStatusCode();
     }
 
     public async Task DeleteAsync(int id, int categoriaid)
     {
-        var response = await client.DeleteAsync($"api/productos/{id}/categorias/{categoriaid}");
+        var response = await client.DeleteAsync($"api/productos/{id}/categoria/{categoriaid}");
         response.EnsureSuccessStatusCode();
     }
 }

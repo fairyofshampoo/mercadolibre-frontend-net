@@ -44,7 +44,7 @@ public class AuthController(AuthClientService auth) : Controller
             }
             catch (Exception)
             {
-                ModelState.AddModelError("Email", "Credenciales no válidas. Inténtelo nuevamente");
+                ModelState.AddModelError("Email", "Credenciales no válidas. Inténtelo nuevamente.");
             }
         }
         return View(model);

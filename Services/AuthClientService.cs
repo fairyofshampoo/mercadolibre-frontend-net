@@ -10,6 +10,7 @@ public class AuthClientService(HttpClient client, IHttpContextAccessor httpConte
     public async Task<AuthUser> ObtenTokenAsync(string email, string password)
     {
         Login usuario = new() { Email = email, Password = password };
+        
         var response = await client.PostAsJsonAsync("api/auth", usuario);
         var token = await response.Content.ReadFromJsonAsync<AuthUser>();
 
