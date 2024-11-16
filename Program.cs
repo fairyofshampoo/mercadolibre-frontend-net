@@ -11,7 +11,7 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddTransient<EnviaBearerDelegatingHandler>();
 builder.Services.AddTransient<RefrescaTokenDelegatingHandler>();
 builder.Services.AddHttpClient<AuthClientService>(httpClient => { httpClient.BaseAddress = new Uri(UrlWebAPI!); });
-builder.Services.AddHttpClient<CategoriasClientService>(httpClient => { httpClient => { httpClient.BaseAddress = new Uri(UrlWebAPI!); })
+builder.Services.AddHttpClient<CategoriasClientService>(httpClient => { httpClient.BaseAddress = new Uri(UrlWebAPI!); })
     .AddHttpMessageHandler<EnviaBearerDelegatingHandler>()
     .AddHttpMessageHandler<RefrescaTokenDelegatingHandler>();
 builder.Services.AddHttpClient<UsuariosClientService>(httpClient => { httpClient.BaseAddress = new Uri(UrlWebAPI!); })
