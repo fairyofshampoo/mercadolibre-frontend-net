@@ -36,7 +36,7 @@ public class AuthController(AuthClientService auth) : Controller
                         new(ClaimTypes.Role, token.Rol), 
                     };
                 auth.IniciaSesionAsync(claims);
-                // Usuairo válido
+                // Usuario válido
                 if(token.Rol == "Administrador")
                     return RedirectToAction("Index", "Productos");
                 else
