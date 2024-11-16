@@ -75,7 +75,7 @@ public class ProductosController(ProductosClientService productos,
             }
         }
         await ProductosDropDownListAsync();
-        ModelState.AddModelError("Nomrbe", "No ha sido posible realizar la acción. Inténtelo nuevamente.");
+        ModelState.AddModelError("Nombre", "No ha sido posible realizar la acción. Inténtelo nuevamente.");
         return View(itemToCreate);
     }
 

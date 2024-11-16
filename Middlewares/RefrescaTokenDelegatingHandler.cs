@@ -17,7 +17,7 @@ public class RefrescaTokenDelegatingHandler(AuthClientService auth, IHttpContext
             {
                 new(ClaimTypes.Name, httpContextAccessor.HttpContext?.User.FindFirstValue(ClaimTypes.Name)!),
                 new(ClaimTypes.GivenName, httpContextAccessor.HttpContext?.User.FindFirstValue(ClaimTypes.GivenName)!),
-                new("jwt",jwt),
+                new("jwt", jwt),
                 new(ClaimTypes.Role, httpContextAccessor.HttpContext?.User.FindFirstValue(ClaimTypes.Role)!)
             };
             auth.IniciaSesionAsync(claims);
