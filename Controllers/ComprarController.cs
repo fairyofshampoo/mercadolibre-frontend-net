@@ -25,6 +25,6 @@ public class ComprarController(ProductosClientService productos, IConfiguration 
 
         ViewBag.Url = configuration["UrlWebAPI"];
         ViewBag.search = s;
-        return View();
+        return View(lista);
     }
 }
