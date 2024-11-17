@@ -1,6 +1,6 @@
 @using System.Security.Claims
 
-<div>
+<div class="me-auto navbar-nav">
   @if (User.Identity?.IsAuthenticated == true)
   {
     @if (User.FindFirstValue(ClaimTypes.Role) == "Usuario")
