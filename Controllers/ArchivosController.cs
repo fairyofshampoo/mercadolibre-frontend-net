@@ -55,7 +55,7 @@ public class ArchivosController(ArchivosClientService archivos, IConfiguration c
     [HttpPost]
     public async Task<IActionResult> CrearAsync(Upload itemToCreate)
     {
-        ViewBag.url = configuration["UrlWebAPI"];
+        ViewBag.Url = configuration["UrlWebAPI"];
         if (ModelState.IsValid)
         {
             try
@@ -87,7 +87,7 @@ public class ArchivosController(ArchivosClientService archivos, IConfiguration c
 
     public async Task<IActionResult> EditarAsync(int id)
     {
-        ViewBag.url = configuration["UrlWebAPI"];
+        ViewBag.Url = configuration["UrlWebAPI"];
         try
         {
             Archivo? itemToEdit = await archivos.GetAsync(id);
@@ -113,7 +113,7 @@ public class ArchivosController(ArchivosClientService archivos, IConfiguration c
         {
             return NotFound();
         }
-        ViewBag.url = configuration["UrlWebAPI"];
+        ViewBag.Url = configuration["UrlWebAPI"];
         if (ModelState.IsValid)
         {
             try
