@@ -62,7 +62,7 @@ public class ArchivosController(ArchivosClientService archivos, IConfiguration c
             {
                 if ((itemToCreate.Portada.Length / 1024) > 100)
                 {
-                    ModelState.AddModelError("Portada", $"El archivo de {itemToCreate.Portada.Length / 1024} KB supera el tampercio máximo permitido.");
+                    ModelState.AddModelError("Portada", $"El archivo de {itemToCreate.Portada.Length / 1024} KB supera el tamaño máximo permitido.");
                     return View(itemToCreate);
                 }
                 if (itemToCreate.Portada.ContentType != "image/jpeg")
@@ -120,7 +120,7 @@ public class ArchivosController(ArchivosClientService archivos, IConfiguration c
             {
                 if ((itemToEdit.Portada.Length / 1024) > 100)
                 {
-                    ModelState.AddModelError("Portada", $"El archivo de {itemToEdit.Portada.Length / 1024} KB supera el tampercio máximo permitido.");
+                    ModelState.AddModelError("Portada", $"El archivo de {itemToEdit.Portada.Length / 1024} KB supera el tamaño máximo permitido.");
                     return View(itemToEdit);
                 }
                 if (itemToEdit.Portada.ContentType != "image/jpeg")
