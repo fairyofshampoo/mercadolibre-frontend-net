@@ -10,7 +10,9 @@ public class UsuarioPwd
     public required string Email { get; set; }
 
     [Required(ErrorMessage = "El campo {0} es obligatorio.")]
-    [MinLength(6, ErrorMessage = "El campo {0} debe tener al menos {1} caracteres.")]
+    [MinLength(8, ErrorMessage = "El campo {0} debe tener al menos {1} caracteres.")]
+    [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z\d]).{8,13}$",  
+        ErrorMessage = "La contraseña debe tener al menos 8 caracteres, máximo 12 caracteres, una mayúscula, una minúscula, un número y un carácter especial.")]
     [DataType(DataType.Password)]
     [Display(Name = "Contraseña")]
     public required string Password
