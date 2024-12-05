@@ -17,24 +17,25 @@ public class ClientesController(ClientesClientService clientesService) : Control
     {
         if (ModelState.IsValid)
         {
-            Console.WriteLine("Creando cliente...");
             try
             {
                 await clientesService.PostAsync(clienteToCreate);
-                return RedirectToAction("Index", "Auth");
+                ViewData["Message"] = "¡La cuenta se creó exitosamente!";
+                ViewData["Success"] = true;
             }
             catch (HttpRequestException ex)
             {
-                Console.WriteLine("Entró al catch");
                 Console.WriteLine(ex.Message);
-                if (ex.StatusCode == System.Net.HttpStatusCode.BadRequest)
-                    ModelState.AddModelError("", "No fue posible crear la cuenta. Inténtelo de nuevo.");
+                ViewData["Message"] = "Hubo un error al crear la cuenta. Inténtalo de nuevo.";
+                ViewData["Success"] = false;
             }
         }
-        
-        Console.WriteLine("Error al crear cliente...");
-        //return View("~/Views/Usuarios/CrearCliente.cshtml", clienteToCreate);
-        
-        return View(clienteToCreate);
+
+        return View("Crear");
+    }
+
+    public IActionResult CreacionExitosa()
+    {
+        return View();
     }
 }
