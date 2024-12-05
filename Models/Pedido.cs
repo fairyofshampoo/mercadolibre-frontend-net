@@ -14,8 +14,11 @@ public class Pedido
     [Display(Name = "Total a pagar")]
     public decimal Total { get; set; }
 
+    [Display(Name = "UsuarioId")]
+    public string? UsuarioId { get; set; }
+
     [Display(Name = "Usuario")]
-    public Usuario? Usuario { get; set; }
+    public UsuarioPedido? Usuario { get; set; }
 
     [Display(Name = "Fecha")]
     public DateTime? Fecha { get; set; }

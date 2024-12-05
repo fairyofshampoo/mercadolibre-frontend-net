@@ -1,7 +1,7 @@
 @model List<Pedido>
 @{
-    ViewData["Title"] = "Pedidos";
-    ViewData["SubTitle"] = "Listado";
+  ViewData["Title"] = "Pedidos";
+  ViewData["SubTitle"] = "Listado";
 }
 
 <nav aria-label="breadcrum">
@@ -49,14 +49,29 @@
               @Html.DisplayFor(modelItem => item.PedidoId)
             </td>
             <td>
-              @Html.DisplayFor(modelItem => item.Producto)
+              @if (item.Producto != null)
+              {
+                @Html.DisplayFor(modelItem => item.Producto.Titulo)
+              }
+              else
+              {
+                <span>No disponible</span>
+              }
             </td>
             <td>
               @Html.DisplayFor(modelItem => item.Total)
             </td>
             <td>
-              @Html.DisplayFor(modelItem => item.Usuario)
+              @if (item.Usuario != null)
+              {
+                @Html.DisplayFor(modelItem => item.Usuario.Email)
+              }
+              else
+              {
+                <span>No disponible</span>
+              }
             </td>
+
             <td>
               @TimeZoneInfo.ConvertTimeBySystemTimeZoneId(Convert.ToDateTime(item.Fecha), "America/Mexico_City")
             </td>
@@ -70,7 +85,7 @@ else
 {
   <div class="mt-5">
     <div class="alert alert-warning" role="alert">
-      No se han encontrado elementos. Iintenelo de nuevo más tarde.
+      No se han encontrado elementos. Inténtelo de nuevo más tarde.
     </div>
   </div>
 }

@@ -7,7 +7,6 @@ public class ClientesController(ClientesClientService clientesService) : Control
     // GET: Muestra el formulario de creación de cuenta
     public IActionResult Crear()
     {
-        //return View("~/Views/Usuarios/CrearCliente.cshtml");
         return View();
     }
 
@@ -33,7 +32,6 @@ public class ClientesController(ClientesClientService clientesService) : Control
         }
         
         Console.WriteLine("Error al crear cliente...");
-        //return View("~/Views/Usuarios/CrearCliente.cshtml", clienteToCreate);
         
         return View(clienteToCreate);
     }
