@@ -7,7 +7,6 @@ public class ClientesController(ClientesClientService clientesService) : Control
     // GET: Muestra el formulario de creación de cuenta
     public IActionResult Crear()
     {
-        //return View("~/Views/Usuarios/CrearCliente.cshtml");
         return View();
     }
 
