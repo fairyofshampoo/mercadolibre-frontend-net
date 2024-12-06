@@ -75,7 +75,7 @@ public class CarritoController(CarritoClientService carrito, PedidosClientServic
             }
         }
 
-        return RedirectToAction("Index", "Carrito");
+        return RedirectToAction("Index", "Comprar");
     }
 
     [HttpPost]
