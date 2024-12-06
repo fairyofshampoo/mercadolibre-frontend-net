@@ -17,6 +17,9 @@ builder.Services.AddHttpClient<CategoriasClientService>(httpClient => { httpClie
 builder.Services.AddHttpClient<UsuariosClientService>(httpClient => { httpClient.BaseAddress = new Uri(UrlWebAPI!); })
     .AddHttpMessageHandler<EnviaBearerDelegatingHandler>()
     .AddHttpMessageHandler<RefrescaTokenDelegatingHandler>();
+builder.Services.AddHttpClient<PedidosClientService>(httpClient => { httpClient.BaseAddress = new Uri(UrlWebAPI!); })
+    .AddHttpMessageHandler<EnviaBearerDelegatingHandler>()
+    .AddHttpMessageHandler<RefrescaTokenDelegatingHandler>();
 builder.Services.AddHttpClient<RolesClientService>(httpClient => { httpClient.BaseAddress = new Uri(UrlWebAPI!); })
     .AddHttpMessageHandler<EnviaBearerDelegatingHandler>()
     .AddHttpMessageHandler<RefrescaTokenDelegatingHandler>();
@@ -35,6 +38,7 @@ builder.Services.AddHttpClient<BitacoraClientService>(httpClient => { httpClient
 builder.Services.AddHttpClient<PedidosClientService>(httpClient => { httpClient.BaseAddress = new Uri(UrlWebAPI!); })
     .AddHttpMessageHandler<EnviaBearerDelegatingHandler>()
     .AddHttpMessageHandler<RefrescaTokenDelegatingHandler>();
+builder.Services.AddHttpClient<ClientesClientService>(httpClient => { httpClient.BaseAddress = new Uri(UrlWebAPI!); } );
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>

@@ -1,4 +1,4 @@
-﻿using frontendnet.Models;
+using frontendnet.Models;
 
 namespace frontendnet.Services;
 
@@ -35,6 +35,6 @@ public class PedidosClientService(CarritoClientService carrito, HttpClient clien
 
     public async Task<List<Pedido>?> GetAsync()
     {
-        return await client.GetFromJsonAsync<List<Pedido>>($"api/pedidos");
+        return await client.GetFromJsonAsync<List<Pedido>>("api/pedidos");
     }
 }

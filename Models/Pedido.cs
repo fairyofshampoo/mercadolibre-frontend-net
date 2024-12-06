@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace frontendnet.Models;
@@ -16,11 +16,16 @@ public class Pedido
     [JsonPropertyName("productoid")]
     public required int? ProductoId { get; set; }
 
-    [Display(Name = "Fecha")]
-    public DateTime Fecha { get; set; }
+    [Display(Name = "Producto")]
+    public Producto? Producto { get; set; }
 
-    [Display(Name = "Total")]
-    [DataType(DataType.Currency)]
     [DisplayFormat(DataFormatString = "{0:C}", ApplyFormatInEditMode = false)]
+    [Display(Name = "Total a pagar")]
     public decimal Total { get; set; }
+
+    [Display(Name = "Usuario")]
+    public UsuarioPedido? Usuario { get; set; }
+
+    [Display(Name = "Fecha")]
+    public DateTime? Fecha { get; set; }
 }
