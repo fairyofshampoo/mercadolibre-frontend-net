@@ -34,9 +34,11 @@ public class ComprarController(CarritoClientService carrito, ProductosClientServ
         try
         {
             var producto = await productos.GetAsync(id);
-            //var carritoService = HttpContext.RequestServices.GetService<CarritoClientService>();
 
-            await carrito.AgregarAlCarrito(producto);
+            if (producto != null)
+            {
+                await carrito.AgregarAlCarrito(producto);
+            }
         } 
         catch (HttpRequestException ex)
         {
