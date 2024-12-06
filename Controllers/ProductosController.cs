@@ -7,9 +7,9 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace frontendnet;
 
-[Authorize(Roles = "Administrador")]
 public class ProductosController(ProductosClientService productos, CategoriasClientService categorias, ArchivosClientService archivos, IConfiguration configuration) : Controller
 {
+    [Authorize(Roles = "Administrador")]
     public async Task<IActionResult> Index(string s)
     {
         List<Producto>? lista = [];
@@ -33,6 +33,7 @@ public class ProductosController(ProductosClientService productos, CategoriasCli
         return View(lista);
     }
 
+    [Authorize(Roles = "Administrador, Usuario")]
     public async Task<IActionResult> Detalle(int id)
     {
         Producto? item = null;
@@ -51,6 +52,8 @@ public class ProductosController(ProductosClientService productos, CategoriasCli
         }
         return View(item);
     }
+
+    [Authorize(Roles = "Administrador")]
     public async Task<IActionResult> Crear()
     {
         await ProductosDropDownListAsync();
@@ -58,6 +61,7 @@ public class ProductosController(ProductosClientService productos, CategoriasCli
     }
 
     [HttpPost]
+    [Authorize(Roles = "Administrador")]
     public async Task<IActionResult> CrearAsync(Producto itemToCreate)
     {
         ViewBag.Url = configuration["UrlWebAPI"];
@@ -81,6 +85,7 @@ public class ProductosController(ProductosClientService productos, CategoriasCli
         return View(itemToCreate);
     }
 
+    [Authorize(Roles = "Administrador")]
     public async Task<IActionResult> EditarAsync(int id)
     {
         Producto? itemToEdit = null;
@@ -105,6 +110,7 @@ public class ProductosController(ProductosClientService productos, CategoriasCli
     }
 
     [HttpPost]
+    [Authorize(Roles = "Administrador")]
     public async Task<IActionResult> EditarAsync(int id, Producto itemToEdit)
     {
         if (id != itemToEdit.ProductoId) return NotFound();
@@ -130,6 +136,7 @@ public class ProductosController(ProductosClientService productos, CategoriasCli
         return View(itemToEdit);
     }
 
+    [Authorize(Roles = "Administrador")]
     public async Task<IActionResult> Eliminar(int id, bool? showError = false)
     {
         ViewBag.Url = configuration["UrlWebAPI"];
@@ -157,6 +164,7 @@ public class ProductosController(ProductosClientService productos, CategoriasCli
     }
 
     [HttpPost]
+    [Authorize(Roles = "Administrador")]
     public async Task<IActionResult> EliminarAsync(int id)
     {
         ViewBag.Url = configuration["UrlWebAPI"];
@@ -179,6 +187,7 @@ public class ProductosController(ProductosClientService productos, CategoriasCli
     }
 
     [AcceptVerbs("GET", "POST")]
+    [Authorize(Roles = "Administrador")]
     public IActionResult ValidaPoster(string Poster)
     {
         if (Uri.IsWellFormedUriString(Poster, UriKind.Absolute) || Poster.Equals("N/A"))
@@ -188,6 +197,7 @@ public class ProductosController(ProductosClientService productos, CategoriasCli
         return Json(false);
     }
 
+    [Authorize(Roles = "Administrador")]
     public async Task<IActionResult> Categorias(int id)
     {
         Producto? itemToView = null;
@@ -211,6 +221,7 @@ public class ProductosController(ProductosClientService productos, CategoriasCli
         return View(itemToView);
     }
 
+    [Authorize(Roles = "Administrador")]
     public async Task<IActionResult> CategoriasAgregar(int id)
     {
         ProductoCategoria? itemToView = null;
@@ -236,6 +247,7 @@ public class ProductosController(ProductosClientService productos, CategoriasCli
     }
 
     [HttpPost]
+    [Authorize(Roles = "Administrador")]
     public async Task<IActionResult> CategoriasAgregar(int id, int categoriaid)
     {
         Producto? producto = null;
@@ -272,6 +284,7 @@ public class ProductosController(ProductosClientService productos, CategoriasCli
         return View(new ProductoCategoria { Producto = producto });
     }
 
+    [Authorize(Roles = "Administrador")]
     public async Task<IActionResult> CategoriasRemover(int id, int categoriaid, bool? showError = false)
     {
         ProductoCategoria? itemToView = null;
@@ -308,6 +321,7 @@ public class ProductosController(ProductosClientService productos, CategoriasCli
     }
 
     [HttpPost]
+    [Authorize(Roles = "Administrador")]
     public async Task<IActionResult> CategoriasRemover(int id, int categoriaid)
     {
         ViewBag.Url = configuration["UrlWebAPI"];
@@ -329,12 +343,14 @@ public class ProductosController(ProductosClientService productos, CategoriasCli
         return RedirectToAction(nameof(CategoriasRemover), new { id, categoriaid, showError = true });
     }
 
+    [Authorize(Roles = "Administrador")]
     private async Task CategoriasDropDownListAsync(object? itemSeleccionado = null)
     {
         var listado = await categorias.GetAsync();
         ViewBag.Categoria = new SelectList(listado, "CategoriaId", "Nombre", itemSeleccionado);
     }
 
+    [Authorize(Roles = "Administrador")]
     private async Task ProductosDropDownListAsync(object? itemSeleccionado = null)
     {
         var listado = await archivos.GetAsync();
