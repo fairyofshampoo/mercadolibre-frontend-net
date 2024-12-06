@@ -1,18 +1,52 @@
+@model List<Producto>
 @{
-  ViewData["Title"] = "Categorias";
+  ViewData["Title"] = "Carrito";
   ViewData["SubTitle"] = "Listado";
 }
 
 <h2 class="text-center mb-3">@ViewData["Title"] <small class="text-muted fs-5">@ViewData["SubTitle"]</small></h2>
-
+<div class="text-end">
+  <p class="fw-bold mb-2">Total: $@Model.Sum(producto => producto.Precio)</p>
+</div>
+<div class="row-small d-flex justify-content-between mb-3">
+  <div>
+    <a class="btn btn-secondary" role="button" asp-action="SeguirComprando" asp-controller="Carrito">
+      Seguir Comprando
+    </a>
+  </div>
+  <div>
+    <a class="btn btn-danger" role="button" asp-action="LimpiarCarrito" asp-controller="Carrito">
+      Vaciar Carrito
+    </a>
+  </div>
+  <div>
+    <a class="btn btn-primary" role="button" asp-action="FinalizarCompra" asp-controller="Carrito">
+      Finalizar Compra
+    </a>
+  </div>
+</div>
 <div class="row small mb-3">
   <div class="col text-end">
-    Mostrando 0 elementos
+    Mostrando @Model.Count() elementos
   </div>
 </div>
 
-<div class="mt-5">
-  <div class="alert alert-warning" role="alert">
-    No se han encontrado elementos. Inténtelo de nuevo mas tarde.
+@if (Model.Count() > 0)
+{
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+    @foreach (var item in Model)
+    {
+      <div class="col">
+        <partial name="_CardPartial" model="item"/>
+      </div>
+    }
   </div>
-</div>
+}
+else
+{
+  <div class="mt-5">
+    <div class="alert alert-warning" role="alert">
+      No hay elementos en el carrito.
+    </div>
+  </div>
+}
