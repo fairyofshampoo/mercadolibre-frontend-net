@@ -9,8 +9,8 @@
     <ol class="breadcrumb small">
         @if (User.FindFirstValue(ClaimTypes.Role) == "Usuario")
         {
-            <li class="breadcrumb-item"><a class="text-decoration-none" title="Regresar al listado" 
-            asp-controller="Comprar" asp-action="Index">Comprar</a></li>
+            <li class="breadcrumb-item"><a class="text-decoration-none" title="Regresar al listado" asp-controller="Comprar"
+                    asp-action="Index">Comprar</a></li>
             <li class="breadcrumb-item active" aria-current="page">@ViewData["SubTitle"]</li>
         }
         else if (User.FindFirstValue(ClaimTypes.Role) == "Administrador")
@@ -28,7 +28,15 @@
 
 @if (User.FindFirstValue(ClaimTypes.Role) == "Usuario")
 {
-    <a class="btn btn-sm btn-outline-secondary" asp-controller="Comprar" asp-action="Index">Regresar</a>
+    <div class="text-center mt-3">
+        <div class="d-inline-flex justify-content-center align-items-center gap-2">
+            <form asp-controller="Comprar" asp-action="AgregarAlCarrito" method="post">
+                <input type="hidden" name="Id" value="@Model.ProductoId" />
+                <button type="submit" class="btn btn-sm btn-outline-primary">Agregar al carrito</button>
+            </form>
+            <a class="btn btn-sm btn-outline-secondary" asp-controller="Comprar" asp-action="Index">Regresar</a>
+        </div>
+    </div>
 }
 else if (User.FindFirstValue(ClaimTypes.Role) == "Administrador")
 {

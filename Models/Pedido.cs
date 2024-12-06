@@ -10,6 +10,7 @@ public class Pedido
     public int? PedidoId { get; set; }
 
     [Display(Name = "Email")]
+    [JsonPropertyName("email")]
     public required string Email { get; set; }
 
     [Display(Name = "Producto")]
