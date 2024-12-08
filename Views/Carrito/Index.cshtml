@@ -2,7 +2,7 @@
 @{
   ViewData["Title"] = "Carrito";
   ViewData["SubTitle"] = "Listado";
-  bool mostrarModal = TempData["CarritoVacio"] != null && (bool)TempData["CarritoVacio"];
+  bool mostrarModal = (TempData["CarritoVacio"] as bool?) ?? false;
 }
 
 <h2 class="text-center mb-3">@ViewData["Title"] <small class="text-muted fs-5">@ViewData["SubTitle"]</small></h2>

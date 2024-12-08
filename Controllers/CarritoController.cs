@@ -13,7 +13,6 @@ public class CarritoController(CarritoClientService carrito, PedidosClientServic
         List<Producto>? lista = [];
         try
         {
-            //var carritoService = HttpContext.RequestServices.GetService<CarritoClientService>();
             lista = await carrito.ObtenerCarrito();
         }
         catch (HttpRequestException ex)
@@ -27,7 +26,7 @@ public class CarritoController(CarritoClientService carrito, PedidosClientServic
         return View(lista);
     }
 
-    public async Task<IActionResult> SeguirComprando()
+    public IActionResult SeguirComprando()
     {
         return RedirectToAction("Index", "Comprar");
     }
@@ -43,7 +42,6 @@ public class CarritoController(CarritoClientService carrito, PedidosClientServic
 
         try
         {
-            //var carritoService = HttpContext.RequestServices.GetService<CarritoClientService>();
             await carrito.LimpiarCarrito();
         }
         catch (HttpRequestException ex)
