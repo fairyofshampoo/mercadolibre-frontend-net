@@ -34,6 +34,13 @@ public class CarritoController(CarritoClientService carrito, PedidosClientServic
 
     public async Task<IActionResult> LimpiarCarrito()
     {
+        var carritoItems = await carrito.ObtenerCarrito();
+        if (carritoItems == null || carritoItems.Count == 0)
+        {
+            TempData["CarritoVacio"] = true;
+            return RedirectToAction("Index", "Carrito");
+        }
+
         try
         {
             //var carritoService = HttpContext.RequestServices.GetService<CarritoClientService>();
@@ -51,8 +58,10 @@ public class CarritoController(CarritoClientService carrito, PedidosClientServic
 
     public async Task<IActionResult> FinalizarCompra()
     {
-        if (await carrito.ObtenerCarrito() == null)
+        var carritoItems = await carrito.ObtenerCarrito();
+        if (carritoItems == null || carritoItems.Count == 0)
         {
+            TempData["CarritoVacio"] = true;
             return RedirectToAction("Index", "Carrito");
         }
 

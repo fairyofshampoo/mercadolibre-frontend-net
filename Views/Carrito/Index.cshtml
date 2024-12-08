@@ -2,6 +2,7 @@
 @{
   ViewData["Title"] = "Carrito";
   ViewData["SubTitle"] = "Listado";
+  bool mostrarModal = TempData["CarritoVacio"] != null && (bool)TempData["CarritoVacio"];
 }
 
 <h2 class="text-center mb-3">@ViewData["Title"] <small class="text-muted fs-5">@ViewData["SubTitle"]</small></h2>
@@ -50,3 +51,31 @@ else
     </div>
   </div>
 }
+
+@if (mostrarModal)
+{
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var myModal = new bootstrap.Modal(document.getElementById('carritoVacioModal'));
+      myModal.show();
+    });
+  </script>
+}
+
+<!-- Modal de alerta -->
+<div class="modal fade" id="carritoVacioModal" tabindex="-1" aria-labelledby="carritoVacioModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="carritoVacioModalLabel">Carrito Vacío</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        No tienes productos en tu carrito. Agrega algunos productos para finalizar la compra.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Entendido</button>
+      </div>
+    </div>
+  </div>
+</div>
