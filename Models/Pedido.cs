@@ -11,7 +11,7 @@ public class Pedido
 
     [Display(Name = "Email")]
     [JsonPropertyName("email")]
-    public required string Email { get; set; }
+    public string Email { get; set; }
 
     [Display(Name = "Producto")]
     [JsonPropertyName("productoid")]
