@@ -1,3 +1,4 @@
+@using System.Security.Claims
 @model Producto
 
 <div class="card mt-3">
@@ -8,22 +9,40 @@
         </div>
         <div class="col-md-8">
             <div class="card-body">
-                <div class="mb-3 ps-3">
-                    <label asp-for="ProductoId" class="form-label form-text">Producto Id</label>
-                    <div class="form-text text-body">@Model.ProductoId</div>
-                </div>
+                @if (User.FindFirstValue(ClaimTypes.Role) == "Administrador")
+                {
+                    <div class="mb-3 ps-3">
+                        <label asp-for="ProductoId" class="form-label form-text">Producto Id</label>
+                        <div class="form-text text-body">@Model.ProductoId</div>
+                    </div>
+                }
                 <div class="mb-3 ps-3">
                     <label asp-for="Titulo" class="form-label form-text">Título</label>
                     <div class="form-text text-body">@Model.Titulo</div>
                 </div>
+                @if (User.FindFirstValue(ClaimTypes.Role) == "Usuario")
+                {
+                    <div class="mb-3 ps-3">
+
+                        <p class="card-text">
+                            @foreach (var cat in Model.Categorias!)
+                            {
+                                <span class="badge rounded-pill text-bg-warning">@cat.Nombre</span>
+                            }
+                        </p>
+                    </div>
+                }
                 <div class="mb-3 ps-3">
                     <label asp-for="Precio" class="form-label form-text">Precio</label>
                     <div class="form-text text-body">@Model.Precio</div>
                 </div>
-                <div class="mb-3 ps-3">
-                    <label asp-for="ArchivoId" class="form-label form-text">Archivo Id</label>
-                    <div class="form-text text-body">@(Model.ArchivoId == null ? "N/A" : $"Id: {Model.ArchivoId}")</div>
-                </div>
+                @if (User.FindFirstValue(ClaimTypes.Role) == "Administrador")
+                {
+                    <div class="mb-3 ps-3">
+                        <label asp-for="ArchivoId" class="form-label form-text">Archivo Id</label>
+                        <div class="form-text text-body">@(Model.ArchivoId == null ? "N/A" : $"Id: {Model.ArchivoId}")</div>
+                    </div>
+                }
                 <div class="mb-3 ps-3">
                     <label asp-for="Descripcion" class="form-label form-text">Descripción</label>
                     <div class="form-text text-body">@Model.Descripcion</div>
