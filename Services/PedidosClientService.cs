@@ -23,7 +23,6 @@ public class PedidosClientService(CarritoClientService carrito, HttpClient clien
         PedidosCarrito pedidos = new PedidosCarrito(pedido);
 
         var response = await client.PostAsJsonAsync($"api/pedidos", pedidos);
-        Console.WriteLine(response.Content.ToString());
 
         if (response.IsSuccessStatusCode)
         {
