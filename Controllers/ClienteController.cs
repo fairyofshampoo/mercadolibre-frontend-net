@@ -24,7 +24,6 @@ public class ClientesController(ClientesClientService clientesService) : Control
             }
             catch (HttpRequestException ex)
             {
-                Console.WriteLine(ex.Message);
                 ViewData["Message"] = "Hubo un error al crear la cuenta. Inténtalo de nuevo.";
                 ViewData["Success"] = false;
             }
